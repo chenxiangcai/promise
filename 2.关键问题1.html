@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+  //先改状态后调用
+  new Promise((resolve, reject) => {
+    resolve(1)
+  }).then((val) => {
+    console.log(val)
+  })
+
+  //先调用后改状态
+  new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve(2)
+    }, 2000)
+  }).then(value => {
+    console.log(value)
+  })
+</script>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script src="./MyPromise.js"></script>
+<script>
+  // new MyPromise((resolve, reject) => {
+  //   // resolve(1)
+  //   reject(1)
+  // }).then(
+  //     value => {
+  //       console.log('value1', value)
+  //     },
+  //     reason => {
+  //       console.log('reason1', reason)
+  //       return new MyPromise((resolve, reject) => reject(3))
+  //     }
+  // ).then(
+  //     value => {
+  //       console.log('value2', value)
+  //     },
+  //     reason => {
+  //       console.log('reason2', reason)
+  //       return new MyPromise((resolve, reject) => reject(23))
+  //     }
+  // ).catch(reason => {
+  //   console.log(reason)
+  //   // return new MyPromise(() => {})
+  // }).then(value => {
+  //   console.log(value)
+  // }, reason => {
+  //   console.log(reason)
+  // })
+
+  const p1 = MyPromise.reject(34)
+  const p4 = MyPromise.resolve(6)
+  const p2 = MyPromise.resolve(MyPromise.resolve(4))
+  const p5 = new MyPromise((resolve, reject) => {
+    setTimeout(() => {
+      reject(7)
+    }, 1000)
+  })
+
+  // const p3 = MyPromise.resolve(MyPromise.reject(5))
+
+
+  // MyPromise.all([p5, p2, p4])
+  //     .then(
+  //         value => {
+  //           console.log(value)
+  //         }, reason => {
+  //           console.log(reason)
+  //         }
+  //     )
+
+
+  MyPromise.race([7, p4]).then(value => {
+    console.log(value)
+  }, reason => console.log(reason))
+
+  Promise.race([7, p4]).then(value => {
+    console.log(value)
+  }, reason => {
+    console.log(reason)
+  })
+
+
+  // p1.catch(e => console.log(e))
+  // p2.then(value => {
+  //   console.log(value)
+  // })
+  // p3.catch(e => {
+  //   console.log(e)
+  // })
+  // p4.then(value => {
+  //   console.log(value)
+  // })
+
+
+</script>
+</body>
+</html>

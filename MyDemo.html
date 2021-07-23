@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script src="./MyDemo.js"></script>
+<script>
+  new MyPromiseDemo((resolve, reject) => {
+    setTimeout(() => {
+      resolve(1)
+    },100)
+  })
+      .then(value => {
+        console.log('onResolved1', value)
+        // throw  3
+        // return 3
+        return new MyPromiseDemo((resolve, reject) => reject(2))
+      }, reason => {
+        console.log('onRejected1', reason)
+      })
+      .then(value => {
+        console.log('onResolved2', value)
+      }, reason => {
+        console.log('onRejected2', reason)
+        throw  3
+      })
+      .catch(e => {
+        console.log(e)
+        return new MyPromiseDemo(() => {
+        })
+      })
+      .then(value => {
+        console.log('onResolved3', value)
+      }, reason => {
+        console.log('onRejected3', reason)
+      })
+</script>
+</body>
+</html>

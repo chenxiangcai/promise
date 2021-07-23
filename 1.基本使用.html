@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+  const p = new Promise((resolve, reject) => {
+    setTimeout(() => {
+      const time = Date.now()
+      if (time % 2 === 0) resolve('偶数时间' + time)
+      else reject('奇数时间' + time)
+    }, 0)
+  })
+      // .then(value => {
+      //   console.log(value)
+      // }).catch(e => {
+      //   console.log(e)
+      // })
+
+  p.then(value => {
+    console.log(value)
+  }, reason => {
+    console.log(reason)
+  })
+</script>
+</body>
+</html>

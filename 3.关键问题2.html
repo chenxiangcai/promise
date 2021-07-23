@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+  new Promise((resolve, reject) => {
+    resolve(1)
+  }).then(
+      value => {
+        console.log(value)
+        // throw 6  -> reason2
+        // return 2 -> value2
+        return Promise.resolve(3) //-> value2
+      },
+      reason => {
+        console.log(reason)
+      }
+  ).then(
+      value => {
+        console.log('value2', value)
+      },
+      reason => {
+        console.log('reason2', reason)
+      })
+</script>
+</body>
+</html>
